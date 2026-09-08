@@ -1,0 +1,16 @@
+---
+title: "Parva Fazeli"
+---
+
+![](images/PARVA.jpg){width=38%}
+
+## Welcome
+
+I am a Master of Data Science student at the University of British Columbia with a background in Applied Mathematics.
+
+My interests include machine learning, statistical modelling, data analysis, and applying quantitative methods to real-world problems.
+
+My previous academic experience includes research in biomathematics, where I worked with mathematical models of biological systems, as well as applied machine learning experience through AI4Good.
+
+This website highlights my academic work, research, projects, and experiences throughout the MDS program.
+

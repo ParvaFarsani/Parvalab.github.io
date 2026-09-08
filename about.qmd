@@ -1,0 +1,11 @@
+---
+title: "About ME"
+---
+
+I am a Master of Data Science student at the University of British Columbia with a background in Applied Mathematics and experience in statistics, programming, and quantitative analysis.
+
+My academic background includes research in biomathematics, where I worked on mathematical models to study biological systems and explored how quantitative methods can be used to understand complex real-world processes. This experience strengthened my interest in modelling, data analysis, and research-driven problem solving.
+
+I also participated in AI4Good, where I worked on an applied machine learning project focused on developing an assistive image-classification system. That experience gave me hands-on exposure to the challenges of working with real-world data, model development, evaluation, and communicating the limitations and practical impact of AI systems.
+
+Through the MDS program, I am continuing to strengthen my skills in Python, R, machine learning, statistical modelling, data visualization, and data communication. My goal is to build a career in data science where I can combine my mathematical background, research experience, and interest in machine learning to solve meaningful problems.
