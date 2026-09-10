@@ -1,10 +1,10 @@
 ---
-title: "Blog"
+title: "From Applied Mathematics to Data Science"
 ---
-I am a Master of Data Science student at the University of British Columbia with a background in Applied Mathematics and experience in statistics, programming, and quantitative analysis.
 
-My academic background includes research in biomathematics, where I worked on mathematical models to study biological systems and explored how quantitative methods can be used to understand complex real-world processes. This experience strengthened my interest in modelling, data analysis, and research-driven problem solving.
+My background in Applied Mathematics introduced me to the idea of using quantitative methods to understand complex real-world problems. Through my biomathematics research, I worked with mathematical models of biological systems and became interested in how mathematics can be used to describe, analyze, and predict complicated processes.
 
-I also participated in AI4Good, where I worked on an applied machine learning project focused on developing an assistive image-classification system. That experience gave me hands-on exposure to the challenges of working with real-world data, model development, evaluation, and communicating the limitations and practical impact of AI systems.
+As I gained more experience with programming, statistics, and machine learning, I became increasingly interested in data science. Participating in AI4Good was an important part of that transition because it gave me the opportunity to work on an applied machine learning project and experience some of the practical challenges involved in working with real-world data, building models, and evaluating their limitations.
 
-Through the MDS program, I am continuing to strengthen my skills in Python, R, machine learning, statistical modelling, data visualization, and data communication. My goal is to build a career in data science where I can combine my mathematical background, research experience, and interest in machine learning to solve meaningful problems.
+Now, as a Master of Data Science student at UBC, I am continuing to build on this foundation. I am especially interested in combining mathematical thinking, statistical methods, and machine learning to solve meaningful problems. I see data science as a natural extension of my background in mathematics, but with a stronger focus on practical applications and decision-making.
+
