@@ -1,10 +1,7 @@
 ---
-title: "From Applied Mathematics to Data Science"
+title: "Blog"  
+listing:
+  contents: posts
+  sort: "date desc"
 ---
-
-My background in Applied Mathematics introduced me to the idea of using quantitative methods to understand complex real-world problems. Through my biomathematics research, I worked with mathematical models of biological systems and became interested in how mathematics can be used to describe, analyze, and predict complicated processes.
-
-As I gained more experience with programming, statistics, and machine learning, I became increasingly interested in data science. Participating in AI4Good was an important part of that transition because it gave me the opportunity to work on an applied machine learning project and experience some of the practical challenges involved in working with real-world data, building models, and evaluating their limitations.
-
-Now, as a Master of Data Science student at UBC, I am continuing to build on this foundation. I am especially interested in combining mathematical thinking, statistical methods, and machine learning to solve meaningful problems. I see data science as a natural extension of my background in mathematics, but with a stronger focus on practical applications and decision-making.
 

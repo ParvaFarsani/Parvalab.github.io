@@ -1,8 +1,11 @@
 ---
 title: "Parva Fazeli"
+about:
+  template: jolla
+  image: images/PARVA.jpg
 ---
 
-![](images/PARVA.jpg){width=38%}
+
 
 ## Welcome
 
