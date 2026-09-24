@@ -5,4 +5,7 @@ requires-python = ">=3.13"
 dependencies = [
     "ipykernel>=7.3.0",
     "jupyter>=1.1.1",
+    "matplotlib>=3.11.2",
+    "palmerpenguins>=0.1.6",
+    "pandas>=3.0.6",
 ]
