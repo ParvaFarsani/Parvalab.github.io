@@ -1,0 +1,186 @@
+---
+title: "Exploring the Palmer Penguins Dataset"
+author: "Parva Fazeli"
+date: "2026-09-24"
+---
+
+## Introduction
+The Palmer Penguins dataset contains measurements collected from three penguin species in the Palmer Archipelago, Antarctica: Adelie, Chinstrap, and Gentoo. It provides several physical measurements for individual penguins, including body mass, flipper length, bill length, and bill depth, as well as information about species, sex, island, and year.
+
+In this post, I use R to explore differences and relationships among some of these measurements. In particular, I will investigate two questions:
+
+1. How does body mass differ among the three penguin species?
+2. What is the relationship between flipper length and body mass?
+
+The analysis includes basic data exploration, handling of missing values, numerical summaries, and visualizations.
+
+## Loading the packages
+
+First, I load the packages required for the analysis.
+
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+```
+
+The `palmerpenguins` package provides the dataset, while functions from the `tidyverse` are used for data manipulation and visualization.
+
+## Exploring the data
+
+Before beginning the analysis, I inspect the dataset.
+
+```{r}
+head(penguins)
+```
+
+I can also examine the dimensions of the dataset.
+
+```{r}
+dim(penguins)
+```
+
+The dataset contains observations of individual penguins, with each row representing one penguin and each column representing a variable.
+
+The variables that are particularly important for this analysis are:
+
+- `species`: penguin species
+- `body_mass_g`: body mass measured in grams
+- `flipper_length_mm`: flipper length measured in millimetres
+
+## Handling missing values
+
+Before creating the summaries and visualizations, I check for missing values in the two numerical variables used in this analysis.
+
+```{r}
+penguins |>
+  summarise(
+    missing_body_mass = sum(is.na(body_mass_g)),
+    missing_flipper_length = sum(is.na(flipper_length_mm))
+  )
+```
+
+Because the analysis depends on both body mass and flipper length, I create a cleaned dataset containing only observations for which both measurements are available.
+
+```{r}
+penguins_clean <- penguins |>
+  drop_na(body_mass_g, flipper_length_mm)
+```
+
+I can compare the number of observations before and after cleaning.
+
+```{r}
+nrow(penguins)
+nrow(penguins_clean)
+```
+
+Removing these incomplete observations prevents missing values from interfering with the calculations and visualizations below.
+
+## Question 1: How does body mass differ among penguin species?
+
+The first question examines whether the three species have similar or different body masses.
+
+I begin by calculating several summary statistics for each species.
+
+```{r}
+body_mass_summary <- penguins_clean |>
+  group_by(species) |>
+  summarise(
+    n = n(),
+    mean_body_mass = mean(body_mass_g),
+    median_body_mass = median(body_mass_g),
+    min_body_mass = min(body_mass_g),
+    max_body_mass = max(body_mass_g)
+  )
+
+body_mass_summary
+```
+
+Using both the mean and median gives a better description of the typical body mass for each species, while the minimum and maximum provide information about the observed range.
+
+### Visualizing body mass by species
+
+A boxplot provides another way to compare the body-mass distributions of the three species.
+
+```{r}
+ggplot(
+  penguins_clean,
+  aes(
+    x = species,
+    y = body_mass_g,
+    fill = species
+  )
+) +
+  geom_boxplot() +
+  labs(
+    title = "Body Mass of Palmer Penguins by Species",
+    x = "Species",
+    y = "Body Mass (g)"
+  ) +
+  theme_minimal() +
+  guides(fill = "none")
+```
+
+### Interpretation
+
+The numerical summaries and boxplot show clear differences in body mass among the species. Gentoo penguins tend to have substantially greater body masses than Adelie and Chinstrap penguins. Adelie and Chinstrap penguins have more similar body-mass distributions, although there is still variation within each species.
+
+The boxplot is useful because it shows not only differences in typical body mass but also the spread of observations within each species.
+
+## Question 2: What is the relationship between flipper length and body mass?
+
+The second question investigates whether penguins with longer flippers also tend to have greater body mass.
+
+First, I calculate the correlation between the two numerical variables.
+
+```{r}
+penguins_clean |>
+  summarise(
+    correlation = cor(flipper_length_mm, body_mass_g)
+  )
+```
+
+The correlation provides a numerical measure of the direction and strength of the relationship between flipper length and body mass.
+
+### Visualizing the relationship
+
+Because both variables are numerical, a scatterplot is useful for examining their relationship.
+
+```{r}
+ggplot(
+  penguins_clean,
+  aes(
+    x = flipper_length_mm,
+    y = body_mass_g,
+    color = species
+  )
+) +
+  geom_point(alpha = 0.7) +
+  labs(
+    title = "Relationship Between Flipper Length and Body Mass",
+    subtitle = "Palmer Penguins",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    color = "Species"
+  ) +
+  theme_minimal()
+```
+
+### Interpretation
+
+The scatterplot shows a positive relationship between flipper length and body mass. In general, penguins with longer flippers also tend to have greater body mass.
+
+The species groups are also visible in the plot. Gentoo penguins generally appear toward the upper-right portion of the graph, corresponding to longer flippers and greater body mass. Adelie and Chinstrap penguins tend to have shorter flippers and lower body masses.
+
+This suggests that the overall relationship between flipper length and body mass is also connected to differences among the three species.
+
+## Conclusion
+
+This analysis used the Palmer Penguins dataset to investigate differences in body mass among species and the relationship between flipper length and body mass.
+
+Before conducting the analysis, observations with missing body-mass or flipper-length measurements were removed so that the same cleaned dataset could be used consistently throughout the post.
+
+For the first question, the numerical summaries and boxplot showed that body mass differs across species, with Gentoo penguins generally having greater body mass than Adelie and Chinstrap penguins.
+
+For the second question, the correlation and scatterplot indicated a positive relationship between flipper length and body mass. Penguins with longer flippers generally tended to be heavier, although the visualization also showed that species is related to both measurements.
+
+Overall, this analysis demonstrates how data manipulation, numerical summaries, and visualization can be combined in R to explore patterns in a dataset.
