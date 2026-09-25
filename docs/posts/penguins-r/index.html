@@ -162,6 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#loading-the-packages" id="toc-loading-the-packages" class="nav-link" data-scroll-target="#loading-the-packages">Loading the packages</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#exploring-the-data" id="toc-exploring-the-data" class="nav-link" data-scroll-target="#exploring-the-data">Exploring the data</a></li>
   <li><a href="#handling-missing-values" id="toc-handling-missing-values" class="nav-link" data-scroll-target="#handling-missing-values">Handling missing values</a></li>
   <li><a href="#question-1-how-does-body-mass-differ-among-penguin-species" id="toc-question-1-how-does-body-mass-differ-among-penguin-species" class="nav-link" data-scroll-target="#question-1-how-does-body-mass-differ-among-penguin-species">Question 1: How does body mass differ among penguin species?</a>
@@ -214,8 +215,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The Palmer Penguins dataset contains measurements collected from three penguin species in the Palmer Archipelago, Antarctica: Adelie, Chinstrap, and Gentoo. It provides several physical measurements for individual penguins, including body mass, flipper length, bill length, and bill depth, as well as information about species, sex, island, and year.</p>
-<p>In this post, I use R to explore differences and relationships among some of these measurements. In particular, I will investigate two questions:</p>
+<p>The Palmer Penguins dataset contains measurements collected from three penguin species in the Palmer Archipelago, Antarctica: Adelie, Chinstrap, and Gentoo. It includes several physical measurements for individual penguins, such as body mass, flipper length, bill length, and bill depth, as well as information about species, sex, island, and year.</p>
+<p>In this post, I use R to explore two questions:</p>
 <ol type="1">
 <li>How does body mass differ among the three penguin species?</li>
 <li>What is the relationship between flipper length and body mass?</li>
@@ -252,11 +253,15 @@ Attaching package: 'palmerpenguins'</code></pre>
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 </div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The data used in this analysis come from the <a href="https://allisonhorst.github.io/palmerpenguins/">Palmer Penguins</a> dataset from Palmer Station Antarctica LTER.</p>
 <p>The <code>palmerpenguins</code> package provides the dataset, while functions from the <code>tidyverse</code> are used for data manipulation and visualization.</p>
 </section>
 <section id="exploring-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-the-data">Exploring the data</h2>
-<p>Before beginning the analysis, I inspect the dataset.</p>
+<p>Before beginning the analysis, I inspect the first few rows of the dataset.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -272,14 +277,14 @@ Attaching package: 'palmerpenguins'</code></pre>
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
-<p>I can also examine the dimensions of the dataset.</p>
+<p>I also examine the dimensions of the dataset.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 344   8</code></pre>
 </div>
 </div>
-<p>The dataset contains observations of individual penguins, with each row representing one penguin and each column representing a variable.</p>
+<p>Each row represents an individual penguin, while the columns represent different variables measured or recorded for that penguin.</p>
 <p>The variables that are particularly important for this analysis are:</p>
 <ul>
 <li><code>species</code>: penguin species</li>
@@ -319,11 +324,11 @@ Attaching package: 'palmerpenguins'</code></pre>
 <pre><code>[1] 342</code></pre>
 </div>
 </div>
-<p>Removing these incomplete observations prevents missing values from interfering with the calculations and visualizations below.</p>
+<p>Removing these incomplete observations allows the same cleaned dataset to be used consistently throughout the analysis.</p>
 </section>
 <section id="question-1-how-does-body-mass-differ-among-penguin-species" class="level2">
 <h2 class="anchored" data-anchor-id="question-1-how-does-body-mass-differ-among-penguin-species">Question 1: How does body mass differ among penguin species?</h2>
-<p>The first question examines whether the three species have similar or different body masses.</p>
+<p>The first question examines how body mass differs among the three penguin species.</p>
 <p>I begin by calculating several summary statistics for each species.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>body_mass_summary <span class="ot">&lt;-</span> penguins_clean <span class="sc">|&gt;</span></span>
@@ -401,7 +406,7 @@ Attaching package: 'palmerpenguins'</code></pre>
 </div>
 </div>
 <p>The correlation provides a numerical measure of the direction and strength of the relationship between flipper length and body mass.</p>
-<p>I can also calculate the correlation separately for each species.</p>
+<p>I also calculate the correlation separately for each species.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>penguins_clean <span class="sc">|&gt;</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
@@ -417,7 +422,7 @@ Attaching package: 'palmerpenguins'</code></pre>
 3 Gentoo          0.703</code></pre>
 </div>
 </div>
-<p>Calculating the correlation separately for each species helps determine whether the positive relationship between flipper length and body mass is also present within individual species, rather than being driven only by differences among species.</p>
+<p>Calculating the correlation separately for each species helps determine whether the relationship between flipper length and body mass is also present within individual species, rather than being driven only by differences among species.</p>
 <section id="visualizing-the-relationship" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-relationship">Visualizing the relationship</h3>
 <p>Because both variables are numerical, a scatterplot is useful for examining their relationship.</p>
@@ -452,16 +457,15 @@ Attaching package: 'palmerpenguins'</code></pre>
 <h3 class="anchored" data-anchor-id="interpretation-1">Interpretation</h3>
 <p>The scatterplot shows a positive relationship between flipper length and body mass. In general, penguins with longer flippers also tend to have greater body mass.</p>
 <p>The species groups are also visible in the plot. Gentoo penguins generally appear toward the upper-right portion of the graph, corresponding to longer flippers and greater body mass. Adelie and Chinstrap penguins tend to have shorter flippers and lower body masses.</p>
-<p>The species-specific correlations provide additional information about whether the relationship between flipper length and body mass also occurs within each species. This helps distinguish the relationship within species from the overall pattern across all penguins.</p>
-<p>This suggests that the overall relationship between flipper length and body mass is also connected to differences among the three species.</p>
+<p>The species-specific correlations provide additional information about the relationship within each species. Comparing these values with the overall correlation helps distinguish the within-species relationships from the overall pattern observed when all three species are considered together.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>This analysis used the Palmer Penguins dataset to investigate differences in body mass among species and the relationship between flipper length and body mass.</p>
 <p>Before conducting the analysis, observations with missing body-mass or flipper-length measurements were removed so that the same cleaned dataset could be used consistently throughout the post.</p>
-<p>For the first question, the numerical summaries and boxplot showed that body mass differs across species, with Gentoo penguins generally having greater body mass than Adelie and Chinstrap penguins. The additional summary statistics also provided information about the centre, variability, and range of body mass within each species.</p>
-<p>For the second question, the overall correlation and scatterplot indicated a positive relationship between flipper length and body mass. Penguins with longer flippers generally tended to be heavier. Calculating the correlation separately for each species also allowed the relationship to be examined within the three species rather than only across the complete dataset.</p>
+<p>For the first question, the numerical summaries and boxplot showed that body mass differs across species, with Gentoo penguins generally having greater body mass than Adelie and Chinstrap penguins. The summary statistics also provided information about the centre, variability, and range of body mass within each species.</p>
+<p>For the second question, the overall correlation and scatterplot indicated a positive relationship between flipper length and body mass. Penguins with longer flippers generally tended to be heavier. Calculating the correlation separately for each species also allowed this relationship to be examined within each species rather than only across the complete dataset.</p>
 
 
 </section>
