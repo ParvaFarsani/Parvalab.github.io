@@ -4,7 +4,7 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Exploring the Palmer Penguins Dataset\n\n\n\n\n\n\n\n\nSep 24, 2026\n\n\nParva Fazeli\n\n\n\n\n\n\n\n\n\n\n\n\nExploring the Palmer Penguins Dataset\n\n\n\n\n\n\n\n\nSep 24, 2026\n\n\nParva Fazeli\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in MDS\n\n\n\n\n\n\n\n\nSep 10, 2026\n\n\nParva Fazeli Farsani\n\n\n\n\n\nNo matching items"
+    "text": "Exploring the Palmer Penguins Dataset\n\n\n\n\n\n\n\n\nSep 24, 2026\n\n\nParva Fazeli\n\n\n\n\n\n\n\n\n\n\n\n\nExploring the Palmer Penguins Dataset\n\n\n\n\n\n\n\n\nSep 24, 2026\n\n\nParva Fazeli\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in MDS\n\n\n\n\n\n\n\n\nSep 10, 2026\n\n\nParva Fazeli Farsani\n\n\n\n\n\n\n\n\n\n\n\n\nR and Python Together: Palmer Penguins\n\n\n\n\n\n\n\n\nSep 24, 2026\n\n\nParva Fazeli\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -19,6 +19,90 @@
     "title": "Parva Fazeli",
     "section": "",
     "text": "I am a Master of Data Science student at the University of British Columbia with a background in Applied Mathematics.\nMy interests include machine learning, statistical modelling, data analysis, and applying quantitative methods to real-world problems.\nMy previous academic experience includes research in biomathematics, where I worked with mathematical models of biological systems, as well as applied machine learning experience through AI4Good.\nThis website highlights my academic work, research, projects, and experiences throughout the MDS program."
+  },
+  {
+    "objectID": "posts/r-and-python/index.html",
+    "href": "posts/r-and-python/index.html",
+    "title": "R and Python Together: Palmer Penguins",
+    "section": "",
+    "text": "This post demonstrates how R and Python can be used together in a single Quarto document. R is used to calculate the mean body mass of each penguin species. The resulting R object is then passed to Python, where it is used for an additional calculation.\nThe data come from the Palmer Penguins dataset from Palmer Station Antarctica LTER."
+  },
+  {
+    "objectID": "posts/r-and-python/index.html#introduction",
+    "href": "posts/r-and-python/index.html#introduction",
+    "title": "R and Python Together: Palmer Penguins",
+    "section": "",
+    "text": "This post demonstrates how R and Python can be used together in a single Quarto document. R is used to calculate the mean body mass of each penguin species. The resulting R object is then passed to Python, where it is used for an additional calculation.\nThe data come from the Palmer Penguins dataset from Palmer Station Antarctica LTER."
+  },
+  {
+    "objectID": "posts/r-and-python/index.html#r-calculate-mean-body-mass",
+    "href": "posts/r-and-python/index.html#r-calculate-mean-body-mass",
+    "title": "R and Python Together: Palmer Penguins",
+    "section": "R: Calculate Mean Body Mass",
+    "text": "R: Calculate Mean Body Mass\nFirst, R loads the Palmer Penguins data and calculates the mean body mass for each species.\n\nlibrary(palmerpenguins)\nlibrary(dplyr)\nlibrary(reticulate)\n\npenguin_summary &lt;- penguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarise(\n    mean_body_mass_g = mean(body_mass_g),\n    .groups = \"drop\"\n  )\n\npenguin_summary\n\n# A tibble: 3 × 2\n  species   mean_body_mass_g\n  &lt;fct&gt;                &lt;dbl&gt;\n1 Adelie               3701.\n2 Chinstrap            3733.\n3 Gentoo               5076.\n\n\nThe object penguin_summary was created in R. It contains one row for each penguin species and its mean body mass."
+  },
+  {
+    "objectID": "posts/r-and-python/index.html#python-receive-the-r-object",
+    "href": "posts/r-and-python/index.html#python-receive-the-r-object",
+    "title": "R and Python Together: Palmer Penguins",
+    "section": "Python: Receive the R Object",
+    "text": "Python: Receive the R Object\nThe following Python chunk accesses the object created in R through r.penguin_summary.\n\npenguin_summary_python = r.penguin_summary\n\npenguin_summary_python\n\n     species  mean_body_mass_g\n0     Adelie       3700.662252\n1  Chinstrap       3733.088235\n2     Gentoo       5076.016260\n\n\nPython is therefore using the result produced by R rather than loading the original dataset and repeating the analysis."
+  },
+  {
+    "objectID": "posts/r-and-python/index.html#python-use-the-transferred-object",
+    "href": "posts/r-and-python/index.html#python-use-the-transferred-object",
+    "title": "R and Python Together: Palmer Penguins",
+    "section": "Python: Use the Transferred Object",
+    "text": "Python: Use the Transferred Object\nNext, Python uses the transferred object to determine which species has the highest mean body mass.\n\nheaviest_species = penguin_summary_python.loc[\n    penguin_summary_python[\"mean_body_mass_g\"].idxmax()\n]\n\nheaviest_species\n\nspecies                 Gentoo\nmean_body_mass_g    5076.01626\nName: 2, dtype: object\n\n\nThe result identifies the penguin species with the highest average body mass based on the summary originally calculated in R."
+  },
+  {
+    "objectID": "posts/r-and-python/index.html#conclusion",
+    "href": "posts/r-and-python/index.html#conclusion",
+    "title": "R and Python Together: Palmer Penguins",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis post demonstrates how R and Python can work together in one Quarto document. R loaded and summarized the Palmer Penguins data and created the penguin_summary object. Python then received that R object and used it for an additional calculation.\nThis demonstrates that an object computed in one language can be passed to and used by another language within the same reproducible Quarto document."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html",
+    "href": "posts/first-weeks/index.html",
+    "title": "My first weeks in MDS",
+    "section": "",
+    "text": "Orientation day on campus."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html#my-first-week-of-mds-a-new-chapter-begins",
+    "href": "posts/first-weeks/index.html#my-first-week-of-mds-a-new-chapter-begins",
+    "title": "My first weeks in MDS",
+    "section": "My First Week of MDS: A New Chapter Begins",
+    "text": "My First Week of MDS: A New Chapter Begins\nThere are some moments in life that feel both exciting and overwhelming at the same time. Starting my MDS was one of those moments.\nMy first week of MDS has been a mix of new experiences, new people, unfamiliar routines, and a lot of thoughts about what lies ahead. After working toward this next step for so long, actually being here feels a little surreal."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html#the-first-day",
+    "href": "posts/first-weeks/index.html#the-first-day",
+    "title": "My first weeks in MDS",
+    "section": "The First Day",
+    "text": "The First Day\nWalking into university on the first day, I had so many emotions running through my mind. I was excited to begin this new chapter, but I was also nervous. Everything felt new—the surroundings, the people, the classrooms, and even the feeling of being a postgraduate student.\nThere was also a quiet realization that this wasn’t just another academic milestone. MDS is a serious commitment, and I knew that the next few years would challenge me in ways I hadn’t experienced before."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html#meeting-new-people",
+    "href": "posts/first-weeks/index.html#meeting-new-people",
+    "title": "My first weeks in MDS",
+    "section": "Meeting New People",
+    "text": "Meeting New People\nOne of the best parts of the first week was meeting my batchmates and getting to know the people I’ll be spending the next few years with.\nAt first, everyone seemed a little reserved and unsure, probably because we were all trying to find our place. Slowly, conversations started happening, introductions turned into jokes, and unfamiliar faces began to feel a little more familiar.\nIt’s comforting to realize that everyone is experiencing some version of the same nervousness and excitement."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html#getting-used-to-the-routine",
+    "href": "posts/first-weeks/index.html#getting-used-to-the-routine",
+    "title": "My first weeks in MDS",
+    "section": "Getting Used to the Routine",
+    "text": "Getting Used to the Routine\nThe first week also meant trying to understand a completely new routine.\nThere was a lot to take in—classes, departments, faculty, clinical responsibilities, schedules, and countless little things that you don’t really think about until you’re actually there.\nI’m slowly learning that MDS isn’t just about studying harder. It’s also about managing time, staying organized, being responsible, and learning how to balance academics with everything else."
+  },
+  {
+    "objectID": "posts/first-weeks/index.html#the-reality-of-mds",
+    "href": "posts/first-weeks/index.html#the-reality-of-mds",
+    "title": "My first weeks in MDS",
+    "section": "The Reality of MDS",
+    "text": "The Reality of MDS\nPerhaps the biggest realization of my first week is that MDS is going to push me out of my comfort zone.\nThere will be days when everything goes well and days when I question whether I can keep up. There will be new skills to learn, mistakes to make, difficult cases to understand"
   },
   {
     "objectID": "posts/penguins-r/index.html",
@@ -82,48 +166,6 @@
     "title": "Exploring the Palmer Penguins Dataset",
     "section": "Conclusion",
     "text": "Conclusion\nThis analysis used the Palmer Penguins dataset to investigate differences in body mass among species and the relationship between flipper length and body mass.\nBefore conducting the analysis, observations with missing body-mass or flipper-length measurements were removed so that the same cleaned dataset could be used consistently throughout the post.\nFor the first question, the numerical summaries and boxplot showed that body mass differs across species, with Gentoo penguins generally having greater body mass than Adelie and Chinstrap penguins. The summary statistics also provided information about the centre, variability, and range of body mass within each species.\nFor the second question, the overall correlation and scatterplot indicated a positive relationship between flipper length and body mass. Penguins with longer flippers generally tended to be heavier. Calculating the correlation separately for each species also allowed this relationship to be examined within each species rather than only across the complete dataset."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html",
-    "href": "posts/first-weeks/index.html",
-    "title": "My first weeks in MDS",
-    "section": "",
-    "text": "Orientation day on campus."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html#my-first-week-of-mds-a-new-chapter-begins",
-    "href": "posts/first-weeks/index.html#my-first-week-of-mds-a-new-chapter-begins",
-    "title": "My first weeks in MDS",
-    "section": "My First Week of MDS: A New Chapter Begins",
-    "text": "My First Week of MDS: A New Chapter Begins\nThere are some moments in life that feel both exciting and overwhelming at the same time. Starting my MDS was one of those moments.\nMy first week of MDS has been a mix of new experiences, new people, unfamiliar routines, and a lot of thoughts about what lies ahead. After working toward this next step for so long, actually being here feels a little surreal."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html#the-first-day",
-    "href": "posts/first-weeks/index.html#the-first-day",
-    "title": "My first weeks in MDS",
-    "section": "The First Day",
-    "text": "The First Day\nWalking into university on the first day, I had so many emotions running through my mind. I was excited to begin this new chapter, but I was also nervous. Everything felt new—the surroundings, the people, the classrooms, and even the feeling of being a postgraduate student.\nThere was also a quiet realization that this wasn’t just another academic milestone. MDS is a serious commitment, and I knew that the next few years would challenge me in ways I hadn’t experienced before."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html#meeting-new-people",
-    "href": "posts/first-weeks/index.html#meeting-new-people",
-    "title": "My first weeks in MDS",
-    "section": "Meeting New People",
-    "text": "Meeting New People\nOne of the best parts of the first week was meeting my batchmates and getting to know the people I’ll be spending the next few years with.\nAt first, everyone seemed a little reserved and unsure, probably because we were all trying to find our place. Slowly, conversations started happening, introductions turned into jokes, and unfamiliar faces began to feel a little more familiar.\nIt’s comforting to realize that everyone is experiencing some version of the same nervousness and excitement."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html#getting-used-to-the-routine",
-    "href": "posts/first-weeks/index.html#getting-used-to-the-routine",
-    "title": "My first weeks in MDS",
-    "section": "Getting Used to the Routine",
-    "text": "Getting Used to the Routine\nThe first week also meant trying to understand a completely new routine.\nThere was a lot to take in—classes, departments, faculty, clinical responsibilities, schedules, and countless little things that you don’t really think about until you’re actually there.\nI’m slowly learning that MDS isn’t just about studying harder. It’s also about managing time, staying organized, being responsible, and learning how to balance academics with everything else."
-  },
-  {
-    "objectID": "posts/first-weeks/index.html#the-reality-of-mds",
-    "href": "posts/first-weeks/index.html#the-reality-of-mds",
-    "title": "My first weeks in MDS",
-    "section": "The Reality of MDS",
-    "text": "The Reality of MDS\nPerhaps the biggest realization of my first week is that MDS is going to push me out of my comfort zone.\nThere will be days when everything goes well and days when I question whether I can keep up. There will be new skills to learn, mistakes to make, difficult cases to understand"
   },
   {
     "objectID": "posts/penguins-python/index.html",
