@@ -20,6 +20,9 @@ The analysis includes basic data exploration, handling of missing values, numeri
 First, I load the packages required for the analysis.
 
 ```{r}
+#| message: false
+#| warning: false
+
 library(palmerpenguins)
 library(tidyverse)
 ```
