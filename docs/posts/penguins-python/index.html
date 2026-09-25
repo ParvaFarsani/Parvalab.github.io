@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="loading-the-packages" class="level2">
 <h2 class="anchored" data-anchor-id="loading-the-packages">Loading the packages</h2>
 <p>First, I load the packages required for the analysis.</p>
-<div id="9393c602" class="cell" data-execution_count="1">
+<div id="761aec01" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -243,11 +243,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exploring-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-the-data">Exploring the data</h2>
 <p>First, I load the Palmer Penguins dataset.</p>
-<div id="28a2f6f4" class="cell" data-execution_count="2">
+<div id="e9b731a5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> load_penguins()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Before beginning the analysis, I inspect the first few rows of the dataset.</p>
-<div id="5c61591c" class="cell" data-execution_count="3">
+<div id="f2537daa" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>I also examine the dimensions of the dataset.</p>
-<div id="e4ce18ed" class="cell" data-execution_count="4">
+<div id="da9b3aa5" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>penguins.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>(344, 8)</code></pre>
@@ -347,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="handling-missing-values" class="level2">
 <h2 class="anchored" data-anchor-id="handling-missing-values">Handling missing values</h2>
 <p>Before creating the summaries and visualizations, I check for missing values in the two numerical variables used in this analysis.</p>
-<div id="5a6138d4" class="cell" data-execution_count="5">
+<div id="57eaa879" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>penguins[[<span class="st">"body_mass_g"</span>, <span class="st">"flipper_length_mm"</span>]].isna().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>body_mass_g          2
@@ -356,13 +356,13 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>Because the analysis depends on both body mass and flipper length, I create a cleaned dataset containing only observations for which both measurements are available.</p>
-<div id="6ddb7f19" class="cell" data-execution_count="6">
+<div id="605ee2e0" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>penguins_clean <span class="op">=</span> penguins.dropna(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    subset<span class="op">=</span>[<span class="st">"body_mass_g"</span>, <span class="st">"flipper_length_mm"</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>).copy()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>I can compare the number of observations before and after cleaning.</p>
-<div id="17412a6f" class="cell" data-execution_count="7">
+<div id="a9d6d409" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(penguins)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(penguins_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -375,7 +375,7 @@ dtype: int64</code></pre>
 <h2 class="anchored" data-anchor-id="question-1-how-does-body-mass-differ-among-penguin-species">Question 1: How does body mass differ among penguin species?</h2>
 <p>The first question examines how body mass differs among the three penguin species.</p>
 <p>I begin by calculating several summary statistics for each species.</p>
-<div id="8fa9bb2c" class="cell" data-execution_count="8">
+<div id="3db0071e" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>body_mass_summary <span class="op">=</span> (</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    penguins_clean</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">"species"</span>)[<span class="st">"body_mass_g"</span>]</span>
@@ -485,7 +485,7 @@ Figure&nbsp;1: Body mass distributions of Adelie, Chinstrap, and Gentoo penguins
 <h2 class="anchored" data-anchor-id="question-2-what-is-the-relationship-between-flipper-length-and-body-mass">Question 2: What is the relationship between flipper length and body mass?</h2>
 <p>The second question investigates whether penguins with longer flippers also tend to have greater body mass.</p>
 <p>First, I calculate the overall correlation between the two numerical variables.</p>
-<div id="5b20fedb" class="cell" data-execution_count="10">
+<div id="3f222970" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>penguins_clean[<span class="st">"flipper_length_mm"</span>].corr(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    penguins_clean[<span class="st">"body_mass_g"</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -495,7 +495,7 @@ Figure&nbsp;1: Body mass distributions of Adelie, Chinstrap, and Gentoo penguins
 </div>
 <p>The correlation provides a numerical measure of the direction and strength of the relationship between flipper length and body mass.</p>
 <p>I also calculate the correlation separately for each species.</p>
-<div id="92f45535" class="cell" data-execution_count="11">
+<div id="9036a517" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>species_correlations <span class="op">=</span> (</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    penguins_clean</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .groupby(<span class="st">"species"</span>)</span>
@@ -518,7 +518,7 @@ dtype: float64</code></pre>
 <section id="visualizing-the-relationship" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-the-relationship">Visualizing the relationship</h3>
 <p>Because both variables are numerical, a scatterplot is useful for examining their relationship.</p>
-<div id="763d822c" class="cell" data-execution_count="12">
+<div id="2755a579" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> species <span class="kw">in</span> species_order:</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    species_data <span class="op">=</span> penguins_clean[</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        penguins_clean[<span class="st">"species"</span>] <span class="op">==</span> species</span>
